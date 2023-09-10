@@ -28,7 +28,7 @@ public class stepDefs {
     }
 
 
-    @Given("Test GetUser with UserName and save the response in the resource folder as {string}")
+    @Given("Test GetUser with UserName and save the response in the resource folder as {string} and Validate the FirstName")
     public void testGetUserWithUserNameAndSaveTheResponseInTheResourceFolderAs(String saveInthisFile) {
 
        String response = ut.testGetUserByUserName(saveInthisFile);

@@ -1,6 +1,7 @@
 package test;
 
 import com.github.javafaker.Faker;
+import com.jayway.jsonpath.JsonPath;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import endpoints.userEndpointOperations;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static utilities.FileUtil.createFileWithContent;
@@ -40,6 +42,13 @@ public class UserTest {
     public void testPostUser(){
        Response res = userEndpointOperations.createUser(this.userPayload);
 
+       if(res.statusCode() == 200){
+           System.out.println("Request executed Successfully");
+       }
+       else{
+           System.out.println("Request execution Failed");
+       }
+
      //   Assert.assertEquals(res.getStatusCode(),200);
     }
 
@@ -47,10 +56,24 @@ public class UserTest {
     public String testGetUserByUserName(String saveInthisFile){
         Response res = userEndpointOperations.getUser(this.userPayload.getUsername());
         System.out.println(res.asString());
+        if(res.statusCode() == 200){
+            System.out.println("Request executed Successfully");
+        }
+        else{
+            System.out.println("Request execution Failed");
+        }
         createFileWithContent(saveInthisFile, res.asString());
 
+       // Validate f the userName of the payload and the response is same using the JsonPath
+      if(userPayload.getFirstName().equals(JsonPath.read(res.asString(),"$.firstName").toString())){
+          System.out.println("Created user FirstName matches with Paylaod FirstName");
+      }
+      else{
+          System.out.println("Created user FirstName does not matche with Paylaod FirstName");
+      }
+
         return res.asString();
-     //   Assert.assertEquals(res.getStatusCode(),200);
+
     }
 
 
@@ -63,7 +86,13 @@ public class UserTest {
 
     public void testUpdateUserByName(){
         Response res = userEndpointOperations.updateUser(this.userPayload.getUsername(), userPayload);
-        //Assert.assertEquals(res.getStatusCode(),200);
+        if(res.statusCode() == 200){
+            System.out.println("Request executed Successfully");
+        }
+        else{
+            System.out.println("Request execution Failed");
+        }
+
 
     }
 
@@ -73,19 +102,38 @@ public class UserTest {
         userPayload.setId(randomDataGen.idNumber().hashCode());
         jsonArrayPayload.add(userPayload);
         Response res = userEndpointOperations.createUserwithArraylist(jsonArrayPayload);
-        //Assert.assertEquals(res.getStatusCode(),200);
+        if(res.statusCode() == 200){
+            System.out.println("Request executed Successfully");
+        }
+        else{
+            System.out.println("Request execution Failed");
+        }
+
     }
 
 
     public void testUserLoginwithQueryParam(){
         Response res = userEndpointOperations.getUserLogin(userPayload.getUsername(),userPayload.getPassword());
-       // Assert.assertEquals(res.getStatusCode(),200);
+        if(res.statusCode() == 200){
+            System.out.println("Request executed Successfully");
+        }
+        else{
+            System.out.println("Request execution Failed");
+        }
+
     }
 
 
     public void testDeleteByName(){
         Response res = userEndpointOperations.deleteUser(this.userPayload.getUsername());
-       // Assert.assertEquals(res.getStatusCode(),200);
+        if(res.statusCode() == 200){
+            System.out.println("Request executed Successfully");
+        }
+        else{
+            System.out.println("Request execution Failed");
+        }
+
+
     }
 
 

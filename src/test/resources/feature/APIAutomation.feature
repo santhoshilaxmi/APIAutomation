@@ -15,7 +15,7 @@ Feature: API Automation  of PetStore User
 
 # Scenario 2 Come to home page
   Scenario: Test GetUserByUserName
-    Given Test GetUser with UserName and save the response in the resource folder as "GetUserByID.json"
+    Given Test GetUser with UserName and save the response in the resource folder as "GetUserByID.json" and Validate the FirstName
     Then Validate the schema
       | ScehemaFileName  |
       | usersSchema.json |

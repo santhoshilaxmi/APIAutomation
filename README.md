@@ -21,3 +21,7 @@ As part of this Framework tried to cover below
 **IDE Console**
 
 ![image](https://github.com/santhoshilaxmi/APIAutomation/assets/38223932/e49abaeb-2e0c-476f-bdc2-d87dac36e58c)
+
+**Basic Cucumber-report**
+![image](https://github.com/santhoshilaxmi/APIAutomation/assets/38223932/e4c67643-2c90-462d-83b4-8163f8fbc15d)
+

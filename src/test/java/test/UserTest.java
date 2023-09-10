@@ -43,10 +43,10 @@ public class UserTest {
        Response res = userEndpointOperations.createUser(this.userPayload);
 
        if(res.statusCode() == 200){
-           System.out.println("Request executed Successfully");
+           System.out.println("POST Request executed Successfully");
        }
        else{
-           System.out.println("Request execution Failed");
+           System.out.println("POST Request execution Failed");
        }
 
      //   Assert.assertEquals(res.getStatusCode(),200);
@@ -57,10 +57,10 @@ public class UserTest {
         Response res = userEndpointOperations.getUser(this.userPayload.getUsername());
         System.out.println(res.asString());
         if(res.statusCode() == 200){
-            System.out.println("Request executed Successfully");
+            System.out.println("GET Request executed Successfully");
         }
         else{
-            System.out.println("Request execution Failed");
+            System.out.println("GET Request execution Failed");
         }
         createFileWithContent(saveInthisFile, res.asString());
 
@@ -87,10 +87,10 @@ public class UserTest {
     public void testUpdateUserByName(){
         Response res = userEndpointOperations.updateUser(this.userPayload.getUsername(), userPayload);
         if(res.statusCode() == 200){
-            System.out.println("Request executed Successfully");
+            System.out.println("PUT Request executed Successfully");
         }
         else{
-            System.out.println("Request execution Failed");
+            System.out.println("PUT Request execution Failed");
         }
 
 
@@ -103,10 +103,10 @@ public class UserTest {
         jsonArrayPayload.add(userPayload);
         Response res = userEndpointOperations.createUserwithArraylist(jsonArrayPayload);
         if(res.statusCode() == 200){
-            System.out.println("Request executed Successfully");
+            System.out.println("POST request with Arraylist payload  executed Successfully");
         }
         else{
-            System.out.println("Request execution Failed");
+            System.out.println("POST request with Arraylist payload  execution Failed");
         }
 
     }
@@ -115,10 +115,10 @@ public class UserTest {
     public void testUserLoginwithQueryParam(){
         Response res = userEndpointOperations.getUserLogin(userPayload.getUsername(),userPayload.getPassword());
         if(res.statusCode() == 200){
-            System.out.println("Request executed Successfully");
+            System.out.println("Get Request with queryparams executed Successfully");
         }
         else{
-            System.out.println("Request execution Failed");
+            System.out.println("Get Request with queryparams execution Failed");
         }
 
     }
@@ -127,10 +127,10 @@ public class UserTest {
     public void testDeleteByName(){
         Response res = userEndpointOperations.deleteUser(this.userPayload.getUsername());
         if(res.statusCode() == 200){
-            System.out.println("Request executed Successfully");
+            System.out.println("Delete Request executed Successfully");
         }
         else{
-            System.out.println("Request execution Failed");
+            System.out.println("Delete Request execution Failed");
         }
 
 
@@ -143,6 +143,7 @@ public class UserTest {
         boolean bFlag = false;
         try{
             Assert.assertThat(res, JsonSchemaValidator.matchesJsonSchema(schemaFile));
+            System.out.println("Scehma Validation is Successful");
 
         }catch(Exception e){
             bFlag = true;
